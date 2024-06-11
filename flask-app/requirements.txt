@@ -1,0 +1,4 @@
+Flask==2.0.1
+tensorflow==2.5.0
+numpy==1.19.5
+python-chess==0.28.0

@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  flask-service:
+    build: ./flask-app
+    ports:
+      - "5000:5000"
+
+  spring-boot-app:
+    build: ./chessBackend
+    ports:
+      - "8080:8080"
+    environment:
+      - flask.api.url=http://flask-service:5000/predict_move
+    depends_on:
+      - flask-service
