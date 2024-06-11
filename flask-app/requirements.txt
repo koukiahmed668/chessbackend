@@ -1,5 +1,5 @@
-Flask==2.0.1
+Flask==3.0.3
 Werkzeug==2.0.1
-tensorflow==2.4.1  # Make sure this matches the version used to save the model
-numpy==1.19.5
-chess==0.31.1
+tensorflow==2.16.1
+numpy==1.26.4
+chess==1.10.0
