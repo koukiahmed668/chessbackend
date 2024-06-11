@@ -86,6 +86,11 @@ def predict_move(board):
 
 app = Flask(__name__)
 
+
+# Load the pre-trained model
+model = keras.models.load_model("chess_model.h5")
+
+
 # Flask route to handle move prediction
 @app.route('/predict_move', methods=['POST'])
 def handle_predict_move():
