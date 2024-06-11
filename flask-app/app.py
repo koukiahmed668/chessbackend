@@ -42,8 +42,31 @@ def board_to_features(board):
 def move_to_index(move):
     return move.from_square * 64 + move.to_square
 
-# Load the pre-trained model
-model = keras.models.load_model("chess_model.h5", custom_objects={"batch_shape": tf.keras.layers.InputLayer})
+games = parse_pgn('Adams.pgn')  # Update with the correct path
+
+X, y = extract_features_and_labels(games)
+
+y = keras.utils.to_categorical(y, num_classes=4096)
+# Build a simple model
+model = keras.Sequential([
+    keras.layers.Dense(128, activation='relu', input_shape=(768,)),  # Updated input shape
+    keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dense(4096, activation='softmax')
+])
+# Compile the model
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Reshape X to fit the model
+X = X.reshape((-1, 768))
+
+# Train the model
+model.fit(X, y, epochs=1, batch_size=64, validation_split=0.1)
+
+# Save the model
+model.save("chess_model.h5")
+
+model = keras.models.load_model("chess_model.h5")
+
 
 # Predict the next move
 def predict_move(board):
