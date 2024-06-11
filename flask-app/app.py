@@ -43,7 +43,7 @@ def move_to_index(move):
     return move.from_square * 64 + move.to_square
 
 # Load the pre-trained model
-model = keras.models.load_model("chess_model.h5")
+model = keras.models.load_model("chess_model.h5", custom_objects={"batch_shape": tf.keras.layers.InputLayer})
 
 # Predict the next move
 def predict_move(board):
