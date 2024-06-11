@@ -17,4 +17,4 @@ COPY --from=build /app/target/chessBackend-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Run the jar file
-ENTRYPOINT ["java", "-jar", "chess-app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
