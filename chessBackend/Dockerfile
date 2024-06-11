@@ -10,7 +10,7 @@ FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
 
 
-COPY --from=build /app/target/chessBackend-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/chess-0.0.1-SNAPSHOT.jar app.jar
 
 
 # Make port 8080 available to the world outside this container
